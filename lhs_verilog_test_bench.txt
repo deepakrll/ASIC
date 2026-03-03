@@ -1,0 +1,29 @@
+module test;
+
+reg [3:0] A, B;
+wire [4:0] Sum;
+
+adder4 uut (
+    .A(A),
+    .B(B),
+    .Sum(Sum)
+);
+
+initial begin
+    // Required for EPWave
+    $dumpfile("dump.vcd");
+    $dumpvars(0, test);
+
+    $display("Starting Simulation");
+
+    A = 4'b0101; B = 4'b0011; #10;
+    $display("A=%b B=%b Sum=%b", A, B, Sum);
+
+    A = 4'b1111; B = 4'b0001; #10;
+    $display("A=%b B=%b Sum=%b", A, B, Sum);
+
+    #10;
+    $finish;
+end
+
+endmodule
